@@ -7,39 +7,64 @@
     <link href="/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-<h1>To-do CRUD</h1>
-<h3>Add</h3>
-<form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-    <input type="text" id="add-name" placeholder="New to-do">
-    <input type="submit" value="Add">
-</form>
-
-<div id="editForm" style="display: none;">
-    <h3>Edit</h3>
-    <form action="javascript:void(0);" onsubmit="updateItem()">
-        <input type="hidden" id="edit-id">
-        <input type="checkbox" id="edit-isComplete">
-        <input type="text" id="edit-name">
-        <input type="submit" value="Save">
-        <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+    <h1>To-do CRUD</h1>
+    <h3>Add</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+        <input type="checkbox" id="add-isComplete">
+        <input type="text" id="add-name" placeholder="Name">
+        <input type="text" id="add-type" placeholder="Type">
+        <input type="submit" value="Add">
     </form>
-</div>
+    <h3>Find</h3>
+    <form action="javascript:void(0);" onsubmit="updateItem2()">
+        <input type="text" id="find-name">
+        <select name="Types" id="find-select-type">
+            <option id="find-select-type-default">Not chosen</option>
+        </select>
+        <input type="submit" value="Find">
+        <a onclick="closeInput2()" aria-label="Close">&#10006;</a>
+    </form>
 
-<p id="counter"></p>
 
-<table>
-    <tr>
-        <th>Is Complete?</th>
-        <th>Name</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tbody id="todos"></tbody>
-</table>
+    <div id="editForm" style="display: none;">
+        <h3>Edit</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem()">
+            <input type="hidden" id="edit-id">
+            <input type="checkbox" id="edit-isComplete">
+            <input type="text" id="edit-name">
+            <input type="text" id="edit-type">
+            <input type="submit" value="Save">
+            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+    <div id="deleteForm" style="display: none;">
+        <h3>Delete</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem1()">
+            <input type="hidden" id="delete-id" readonly="">
+            <input type="checkbox" id="delete-isComplete" disabled="">
+            <input type="text" id="delete-name" readonly="">
+            <input type="text" id="delete-type" readonly="">
+            <input type="submit" value="Delete">
+            <a onclick="closeInput1()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
 
-<script src="js/site.js" asp-append-version="true"></script>
-<script type="text/javascript">
-    getItems();
-</script>
+    <p id="counter"></p>
+
+    <table>
+        <tr>
+            <th>Is Complete?</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
 </body>
 </html>
